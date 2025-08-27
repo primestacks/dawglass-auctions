@@ -6,6 +6,7 @@ import { auctionData } from "../../data/data.js";
 import FeaturedAuctionCard from "../../components/FeaturedAuctionCard";
 import { FiUsers } from "react-icons/fi";
 import Footer from "../../components/Footer.jsx";
+import { Link } from "react-router";
 
 //import icons
 import reactLogo from "../../assets/icons/react.svg";
@@ -127,10 +128,14 @@ function Landing() {
       </section>
 
       {/* Featured live auctions section */}
-      <section className="py-16 max-w-full bg-gray-100 text-center">
+      <section className="py-16 max-w-full mx-auto bg-gray-100 text-center">
         <div className="max-w-6xl mx-auto   ">
-          <h2 className="text-3xl font-normal mb-3">Featured Live Auctions</h2>
-          <p className="mb-7">Explore our top live auctions</p>
+          <h2 className="text-3xl font-normal mb-3 text-[#111827] text-[1.875rem]">
+            Featured Live Auctions
+          </h2>
+          <p className="mb-7 font-Inter text-[1.24rem] text-[#4B5563]">
+            Don't miss these popular items ending soon
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-6">
             {featuredAuctionData.map((auction, index) => (
               <FeaturedAuctionCard key={index} auctionData={auction} />
@@ -138,9 +143,15 @@ function Landing() {
           </div>
 
           {/* Call to Action Section */}
-          <button className="bg-[#2094F3]  text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+          {/* <button className="bg-[#2094F3]  text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+            <Link to="/liveauctions">View all auctions</Link>
+          </button> */}
+          <Link
+            to="/liveauctions"
+            className="bg-[#2094F3] py-3 px-10  text-white rounded hover:bg-blue-700 transition"
+          >
             View all auctions
-          </button>
+          </Link>
         </div>
       </section>
 

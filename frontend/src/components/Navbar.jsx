@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { navItems } from "../data/data";
+import { Link } from "react-router";
 
 const SearchIcon = () => (
   <svg
