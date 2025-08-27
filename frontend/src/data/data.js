@@ -35,7 +35,7 @@ const auctionData = [
   {
     isLive: false,
     Fav: true,
-    image: "../assets/images/car.svg",
+    image: gamingPc,
     category: "Electronics",
     title: "Apple MacBook Pro 16-inch",
     productDescription:
@@ -80,7 +80,7 @@ const auctionData = [
   {
     isLive: false,
     Fav: false,
-    image: "../assets/images/car.svg",
+    image: gamingPc,
     category: "Cars",
     title: "2020 Tesla Model 3",
     productDescription:
@@ -95,7 +95,7 @@ const auctionData = [
   {
     isLive: true,
     Fav: false,
-    image: iphone,
+    image: gamingPc,
     category: "Electronics",
     title: "Samsung 85-inch QLED TV",
     productDescription:
@@ -215,7 +215,7 @@ const auctionData = [
   {
     isLive: true,
     Fav: false,
-    image: iphone,
+    image: car,
     category: "Electronics",
     title: "PlayStation 5 Console",
     productDescription:
@@ -230,7 +230,7 @@ const auctionData = [
   {
     isLive: true,
     Fav: true,
-    image: "../assets/images/car.svg",
+    image: motocycle,
     category: "Clothing",
     title: "Prada Silk Evening Dress",
     productDescription:
@@ -245,7 +245,7 @@ const auctionData = [
   {
     isLive: false,
     Fav: false,
-    image: "../assets/images/car.svg",
+    image: motocycle,
     category: "General",
     title: "Professional Espresso Machine",
     productDescription:
@@ -260,7 +260,7 @@ const auctionData = [
   {
     isLive: true,
     Fav: false,
-    image: "../assets/images/car.svg",
+    image: motocycle,
     category: "Cars",
     title: "2019 Porsche 911 Carrera",
     productDescription:
