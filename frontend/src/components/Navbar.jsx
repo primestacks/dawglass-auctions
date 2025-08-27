@@ -25,11 +25,11 @@ const Navbar = () => {
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="text-2xl font-normal text-[#2094F3] font-Inter">
-          Dawglass Auctions
+          <Link to="/">Dawglass</Link>
         </div>
         {/* Desktop Nav */}
         <ul className="hidden md:flex space-x-6">
-          {navItems.map((navItem) => (
+          {/* {navItems.map((navItem) => (
             <li
               key={navItem.name}
               className={`${
@@ -44,6 +44,15 @@ const Navbar = () => {
               >
                 {navItem.name}
               </a>
+            </li>
+          ))} */}
+
+          {navItems.map((item) => (
+            <li
+              key={item.name}
+              className={item.active && "border-b-3 border-[#2094F3]"}
+            >
+              <Link to={item.to}>{item.name}</Link>
             </li>
           ))}
         </ul>

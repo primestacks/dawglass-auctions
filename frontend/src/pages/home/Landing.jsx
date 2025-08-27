@@ -128,7 +128,7 @@ function Landing() {
       </section>
 
       {/* Featured live auctions section */}
-      <section className="py-16 max-w-full mx-auto bg-gray-100 text-center">
+      <section className="py-16 max-w-full mx-auto min-h-screen bg-gray-100 text-center">
         <div className="max-w-6xl mx-auto   ">
           <h2 className="text-3xl font-normal mb-3 text-[#111827] text-[1.875rem]">
             Featured Live Auctions

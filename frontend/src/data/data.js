@@ -1,15 +1,16 @@
 // Import images from the assets folder
 import car from "../assets/images/car.svg";
 import gamingPc from "../assets/images/gaming-pc.png";
-import iphone from "../assets/images/iphone-15.png";
+// import iphone from "../assets/images/iphone-15.png";
 import leatherJacket from "../assets/images/leather-jacket.png";
 import motocycle from "../assets/images/motocycle.png";
 import vintageWatch from "../assets/images/vintage-watch.png";
+import { Link } from "react-router-dom";
 
 const navItems = [
-  { name: "Home", href: "#", active: true },
-  { name: "isLive Auctions", href: "#", active: false },
-  { name: "Categories", href: "#", active: false },
+  { name: "Home", to: "/", active: true },
+  { name: "Live Auctions", to: "/liveauctions", active: false },
+  { name: "Categories", to: "/categories", active: false },
 ];
 
 // ========================================
