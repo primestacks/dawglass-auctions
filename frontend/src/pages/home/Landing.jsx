@@ -1,12 +1,38 @@
 import React from "react";
-import Navbar from "../../components/Navbar";
-import Button from "../../components/Button";
+import Navbar from "../../components/Navbar.jsx";
+import Button from "../../components/Button.jsx";
 import { FaSearch, FaHeart } from "react-icons/fa";
 import { auctionData } from "../../data/data.js";
-import FeaturedAuctionCard from "../../components/FeaturedAuctionCard";
+import FeaturedAuctionCard from "../../components/FeaturedAuctionCard.jsx";
 import { FiUsers } from "react-icons/fi";
 import Footer from "../../components/Footer.jsx";
 import { Link } from "react-router";
+
+// import images/icons
+import livebidIcon from "../../assets/icons/livebid-icon.svg";
+import greatDealIcon from "../../assets/icons/great-deal-icon.svg";
+import secureIcon from "../../assets/icons/secure-icon.svg";
+
+const whyChooseUsData = [
+  {
+    id: 1,
+    icon: livebidIcon,
+    title: "Live Bidding",
+    description: "Real-time bidding with instant updates and notifications",
+  },
+  {
+    id: 2,
+    icon: secureIcon,
+    title: "Secure Platform",
+    description: "Safe and secure transactions with buyer protection",
+  },
+  {
+    id: 3,
+    icon: greatDealIcon,
+    title: "Great Deals",
+    description: "Find incredible bargains and rare items every day",
+  },
+];
 
 //import icons
 import reactLogo from "../../assets/icons/react.svg";
@@ -46,44 +72,33 @@ function Landing() {
 
       {/* Why choose us Section */}
       <section className="py-16">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-normal mb-3">
+        <div className="max-w-6xl  mx-auto text-center">
+          <h2 className="text-2xl mb-3 text-[#111827] font-Inter font-normal">
             Why Choose Premier Auctions?
           </h2>
-          <p className="mb-7">
+          <p className="mb-7 text-[#4B5563] my-3 font-Inter">
             Join thousands of satisfied bidders and sellers worldwide
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 bg-gray-100 rounded shadow flex flex-col items-center ">
-              <img src={reactLogo} alt="react icon" />
-              <h3 className="text-xl font-semibold mb-2">Wide Selection</h3>
-              <p>
-                Explore a vast range of items from antiques to modern
-                collectibles.
-              </p>
-            </div>
-            <div className="p-6 bg-gray-100 rounded shadow flex flex-col items-center">
-              <img src={reactLogo} alt="react icon" />
-              <h3 className="text-xl font-semibold mb-2">
-                Secure Transactions
-              </h3>
-              <p>
-                Your safety is our priority. Enjoy secure and reliable
-                transactions.
-              </p>
-            </div>
-            <div className="p-6 bg-gray-100 rounded shadow flex flex-col items-center">
-              <img src={reactLogo} alt="react icon" />
-              <h3 className="text-xl font-semibold mb-2">Community Driven</h3>
-              <p>Join a vibrant community of buyers and sellers.</p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-7 bg-[#F9FAFB] py-5">
+            {whyChooseUsData.map((item) => (
+              <div
+                key={item.id}
+                className="p-8 bg-[#ffffff] rounded shadow flex flex-col gap-y-2 items-center"
+              >
+                <img src={item.icon} alt={`${item.title}-icon`} />
+                <h2 className="text-xl font-normal mb-2">{item.title}</h2>
+                <p className="text-[#4B5563] text-[15.65px]">
+                  {item.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Browse categories section */}
       {/* Why choose us Section */}
-      <section className="py-16 max-w-full">
+      <section className="py-16 max-w-full bg-[#F9FAFB]">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-normal mb-3">Browse Categories</h2>
           <p className="mb-7">Find exactly what you are looking for</p>
