@@ -5,7 +5,12 @@ import gamingPc from "../assets/images/gaming-pc.png";
 import leatherJacket from "../assets/images/leather-jacket.png";
 import motocycle from "../assets/images/motocycle.png";
 import vintageWatch from "../assets/images/vintage-watch.png";
-import { Link } from "react-router-dom";
+import { slugify } from "../utils/utils.js";
+
+// import images/icons
+import livebidIcon from "../assets/icons/livebid-icon.svg";
+import greatDealIcon from "../assets/icons/great-deal-icon.svg";
+import secureIcon from "../assets/icons/secure-icon.svg";
 
 const navItems = [
   { name: "Home", to: "/", active: true },
@@ -16,13 +21,14 @@ const navItems = [
 // ========================================
 // Featured auction array
 // ===================================
-const auctionData = [
+const rawAuctionData = [
   {
+    id: 1,
     isLive: true,
     Fav: false,
     image: car,
     category: "Cars",
-    title: "2018 BMW M4 Coupe",
+    title: "BMW 2018 M4 Coupe",
     productDescription:
       "High-performance sports coupe in excellent condition. This BMW M4 features a turbocharged inline-six engine, adaptive suspension, and a luxurious interior with leather seats and advanced infotainment. Perfect for enthusiasts seeking speed and style.",
     currentBid: 45000,
@@ -33,6 +39,7 @@ const auctionData = [
     startingPrice: 40000,
   },
   {
+    id: 2,
     isLive: false,
     Fav: true,
     image: gamingPc,
@@ -48,6 +55,7 @@ const auctionData = [
     startingPrice: 1800,
   },
   {
+    id: 3,
     isLive: true,
     Fav: false,
     image: motocycle,
@@ -63,6 +71,7 @@ const auctionData = [
     startingPrice: 800,
   },
   {
+    id: 4,
     isLive: true,
     Fav: true,
     image: gamingPc,
@@ -78,6 +87,7 @@ const auctionData = [
     startingPrice: 100,
   },
   {
+    id: 5,
     isLive: false,
     Fav: false,
     image: gamingPc,
@@ -93,6 +103,7 @@ const auctionData = [
     startingPrice: 35000,
   },
   {
+    id: 6,
     isLive: true,
     Fav: false,
     image: gamingPc,
@@ -108,6 +119,7 @@ const auctionData = [
     startingPrice: 2800,
   },
   {
+    id: 7,
     isLive: true,
     Fav: true,
     image: vintageWatch,
@@ -123,6 +135,7 @@ const auctionData = [
     startingPrice: 1200,
   },
   {
+    id: 8,
     isLive: false,
     Fav: false,
     image: "../assets/images/car.svg",
@@ -138,6 +151,7 @@ const auctionData = [
     startingPrice: 500,
   },
   {
+    id: 9,
     isLive: true,
     Fav: false,
     image: car,
@@ -153,6 +167,7 @@ const auctionData = [
     startingPrice: 65000,
   },
   {
+    id: 10,
     isLive: false,
     Fav: true,
     image: "../assets/images/car.svg",
@@ -168,6 +183,7 @@ const auctionData = [
     startingPrice: 2100,
   },
   {
+    id: 11,
     isLive: true,
     Fav: false,
     image: leatherJacket,
@@ -183,6 +199,7 @@ const auctionData = [
     startingPrice: 7000,
   },
   {
+    id: 12,
     isLive: true,
     Fav: true,
     image: motocycle,
@@ -198,6 +215,7 @@ const auctionData = [
     startingPrice: 2500,
   },
   {
+    id: 13,
     isLive: false,
     Fav: false,
     image: car,
@@ -213,6 +231,7 @@ const auctionData = [
     startingPrice: 52000,
   },
   {
+    id: 14,
     isLive: true,
     Fav: false,
     image: car,
@@ -228,6 +247,7 @@ const auctionData = [
     startingPrice: 500,
   },
   {
+    id: 15,
     isLive: true,
     Fav: true,
     image: motocycle,
@@ -243,6 +263,7 @@ const auctionData = [
     startingPrice: 1500,
   },
   {
+    id: 16,
     isLive: false,
     Fav: false,
     image: motocycle,
@@ -258,6 +279,7 @@ const auctionData = [
     startingPrice: 1800,
   },
   {
+    id: 17,
     isLive: true,
     Fav: false,
     image: motocycle,
@@ -273,9 +295,10 @@ const auctionData = [
     startingPrice: 85000,
   },
   {
+    id: 18,
     isLive: false,
     Fav: true,
-    image: "../assets/images/car.svg",
+    image: car,
     category: "Electronics",
     title: "Bose QuietComfort 45 Headphones",
     productDescription:
@@ -288,9 +311,10 @@ const auctionData = [
     startingPrice: 250,
   },
   {
+    id: 19,
     isLive: true,
     Fav: false,
-    image: "../assets/images/car.svg",
+    image: car,
     category: "Clothing",
     title: "Burberry Trench Coat",
     productDescription:
@@ -303,9 +327,10 @@ const auctionData = [
     startingPrice: 950,
   },
   {
+    id: 20,
     isLive: true,
     Fav: true,
-    image: "../assets/images/car.svg",
+    image: car,
     category: "General",
     title: "Yamaha Grand Piano",
     productDescription:
@@ -319,4 +344,60 @@ const auctionData = [
   },
 ];
 
-export { auctionData, navItems };
+// ========================================
+// Why choose us data array
+const whyChooseUsData = [
+  {
+    id: 1,
+    icon: livebidIcon,
+    title: "Live Bidding",
+    description: "Real-time bidding with instant updates and notifications",
+  },
+  {
+    id: 2,
+    icon: secureIcon,
+    title: "Secure Platform",
+    description: "Safe and secure transactions with buyer protection",
+  },
+  {
+    id: 3,
+    icon: greatDealIcon,
+    title: "Great Deals",
+    description: "Find incredible bargains and rare items every day",
+  },
+];
+
+const categoriesObject = [
+  {
+    id: 1,
+    icon: livebidIcon,
+    catigory: "Electronics",
+    description: "Gadgets, computers, and electronic devices",
+  },
+  {
+    id: 2,
+    icon: secureIcon,
+    catigory: "Cars",
+    description: "Vehicles, motorcycles, and automotive items",
+  },
+  {
+    id: 3,
+    icon: greatDealIcon,
+    catigory: "Clothing",
+    description: "Fashion, accessories, and apparel",
+  },
+  {
+    id: 4,
+    icon: greatDealIcon,
+    catigory: "General",
+    description: "Miscellaneous items and collectibles",
+  },
+];
+
+// Add slug automatically
+const auctionData = rawAuctionData.map((auction) => ({
+  ...auction,
+  slug: slugify(auction.title),
+}));
+
+export { auctionData, navItems, categoriesObject, whyChooseUsData };

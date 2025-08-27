@@ -4,6 +4,7 @@ import Landing from "./pages/home/Landing";
 import LiveAuction from "./pages/LiveAuction";
 import NotFoundPage from "./pages/NotFoundPage";
 import Categories from "./pages/Categories";
+import AuctionDetailPage from "./pages/AuctionDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/categories",
     element: <Categories />,
+  },
+  {
+    path: "/auction/:id",
+    element: <AuctionDetailPage />,
   },
 ]);
 

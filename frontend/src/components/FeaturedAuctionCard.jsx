@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoHeart } from "react-icons/io5";
+import { Link, useParams } from "react-router-dom";
 
 function FeaturedAuctionCard({ auctionData }) {
   const [isFav, setIsFav] = useState("");
+
+  const { slug } = useParams();
+  const auction = auctionData.slug;
+
+  // console.log(auction);
 
   const handleFavoriteToggle = () => {
     // Toggle favorite state
@@ -52,7 +58,7 @@ function FeaturedAuctionCard({ auctionData }) {
         <span>Starting price</span>
 
         <button className="bg-[#2094F3] cursor-pointer w-full py-3 rounded mt-3 text-[#ffffff] font-Inter font-semibold">
-          Place bid
+          <Link to={`/auction/${auction}`}>Place a bid</Link>
         </button>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import CategoryFilter from "../components/CategoryFilter";
 
 function Categories() {
   return (
@@ -13,6 +14,9 @@ function Categories() {
           </p>
         </div>
       </section>
+
+      {/* filter by Categories section */}
+      <CategoryFilter />
     </div>
   );
 }

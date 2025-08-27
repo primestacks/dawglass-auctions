@@ -1,41 +1,13 @@
 import React from "react";
 import Navbar from "../../components/Navbar.jsx";
 import Button from "../../components/Button.jsx";
-import { FaSearch, FaHeart } from "react-icons/fa";
-import { auctionData } from "../../data/data.js";
+// import { FaSearch, FaHeart } from "react-icons/fa";
+import { auctionData, whyChooseUsData } from "../../data/data.js";
 import FeaturedAuctionCard from "../../components/FeaturedAuctionCard.jsx";
 import { FiUsers } from "react-icons/fi";
 import Footer from "../../components/Footer.jsx";
 import { Link } from "react-router";
-
-// import images/icons
-import livebidIcon from "../../assets/icons/livebid-icon.svg";
-import greatDealIcon from "../../assets/icons/great-deal-icon.svg";
-import secureIcon from "../../assets/icons/secure-icon.svg";
-
-const whyChooseUsData = [
-  {
-    id: 1,
-    icon: livebidIcon,
-    title: "Live Bidding",
-    description: "Real-time bidding with instant updates and notifications",
-  },
-  {
-    id: 2,
-    icon: secureIcon,
-    title: "Secure Platform",
-    description: "Safe and secure transactions with buyer protection",
-  },
-  {
-    id: 3,
-    icon: greatDealIcon,
-    title: "Great Deals",
-    description: "Find incredible bargains and rare items every day",
-  },
-];
-
-//import icons
-import reactLogo from "../../assets/icons/react.svg";
+import CategoryFilter from "../../components/CategoryFilter.jsx";
 
 function Landing() {
   // Filter the auctionData to get only live auctions
@@ -96,51 +68,8 @@ function Landing() {
         </div>
       </section>
 
-      {/* Browse categories section */}
-      {/* Why choose us Section */}
-      <section className="py-16 max-w-full bg-[#F9FAFB]">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-normal mb-3">Browse Categories</h2>
-          <p className="mb-7">Find exactly what you are looking for</p>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="p-6 bg-gray-100 rounded shadow flex flex-col items-center ">
-              <img src={reactLogo} alt="" />
-              <h3 className="text-xl font-semibold mb-2">Wide Selection</h3>
-              <p>
-                Explore a vast range of items from antiques to modern
-                collectibles.
-              </p>
-              <span>0 auction</span>
-            </div>
-            <div className="p-6 bg-gray-100 rounded shadow flex flex-col items-center ">
-              <img src={reactLogo} alt="icon" />
-              <h3 className="text-xl font-semibold mb-2">Wide Selection</h3>
-              <p>
-                Explore a vast range of items from antiques to modern
-                collectibles.
-              </p>
-              <span>0 auction</span>
-            </div>
-            <div className="p-6 bg-gray-100 rounded shadow flex flex-col items-center">
-              <img src={reactLogo} alt="icon" />
-              <h3 className="text-xl font-semibold mb-2">
-                Secure Transactions
-              </h3>
-              <p>
-                Your safety is our priority. Enjoy secure and reliable
-                transactions.
-              </p>
-              <span>0 auction</span>
-            </div>
-            <div className="p-6 bg-gray-100 rounded shadow flex flex-col items-center">
-              <img src={reactLogo} alt="icon" />
-              <h3 className="text-xl font-semibold mb-2">Community Driven</h3>
-              <p>Join a vibrant community of buyers and sellers.</p>
-              <span>0 auction</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* filter by Categories section */}
+      <CategoryFilter />
 
       {/* Featured live auctions section */}
       <section className="py-16 max-w-full mx-auto min-h-screen bg-gray-100 text-center">
