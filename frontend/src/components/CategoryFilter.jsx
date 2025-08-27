@@ -10,7 +10,7 @@ function CategoryFilter() {
   return (
     <div>
       {/* Browse categories section */}
-      <section className="py-16 bg-[#ffffff]">
+      <section className="py-16 bg-[#ffffff] ">
         <div className="max-w-6xl  mx-auto text-center">
           <h2 className="text-2xl mb-3 text-[#111827] font-Inter font-normal">
             Browse by Category

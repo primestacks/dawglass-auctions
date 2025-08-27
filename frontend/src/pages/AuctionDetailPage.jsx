@@ -12,7 +12,7 @@ function AuctionDetailPage() {
     return (
       <div>
         <Navbar />
-        <div className="max-w-3xl mx-auto py-20 text-center">
+        <div className="max-w-3xl mx-auto py-20 text-center min-h-screen">
           <h2 className="text-2xl font-bold mb-4">Auction Not Found</h2>
           <Link to="/" className="text-blue-600 underline">
             Go back to home
@@ -26,7 +26,7 @@ function AuctionDetailPage() {
   return (
     <div>
       <Navbar />
-      <section className="max-w-4xl mx-auto py-12 px-4">
+      <section className="max-w-4xl mx-auto py-12 px-4 min-h-screen">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <img
             src={auction.image}
