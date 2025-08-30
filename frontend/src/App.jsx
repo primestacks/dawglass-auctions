@@ -1,11 +1,12 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Landing from "./pages/home/Landing";
 import LiveAuction from "./pages/LiveAuction";
 import NotFoundPage from "./pages/NotFoundPage";
 import Categories from "./pages/Categories";
-import AuctionDetailPage from "./pages/AuctionDetailPage";
+import AuctionDetails from "./pages/AuctionDetails";
 
+// Define routes using createBrowserRouter
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/auction/:id",
-    element: <AuctionDetailPage />,
+    element: <AuctionDetails />,
   },
 ]);
 

@@ -1,8 +1,8 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import Navbar from "../../components/Navbar.jsx";
 import Button from "../../components/Button.jsx";
 // import { FaSearch, FaHeart } from "react-icons/fa";
-import { auctionData, whyChooseUsData } from "../../data/data.js";
+import { whyChooseUsData } from "../../data/data.js";
 import FeaturedAuctionCard from "../../components/FeaturedAuctionCard.jsx";
 import { FiUsers } from "react-icons/fi";
 import Footer from "../../components/Footer.jsx";
@@ -10,17 +10,46 @@ import { Link } from "react-router";
 import CategoryFilter from "../../components/CategoryFilter.jsx";
 
 function Landing() {
+  // const [featuredAuctionData, setFeaturedAuctionData] = useState([]);
+
+  const [liveAuctions, setLiveAuctions] = useState([]); // State to hold live auction data
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch auction data from the mock API
+  useEffect(() => {
+    const fetchAuctions = async () => {
+      const res = await fetch("http://localhost:5000/auctions");
+      try {
+        if (!res.ok) throw new Error("Failed to fetch auctions");
+        const data = await res.json();
+        const filteredLiveAuctions = data
+          .filter((auction) => auction.isLive)
+          .slice(0, 6); // Get only the first 6 live auctions
+        setLiveAuctions(filteredLiveAuctions);
+      } catch (error) {
+        setError(error.message);
+      }
+      setLoading(false);
+    };
+    fetchAuctions();
+  }, []);
+
+  if (loading) return <p>Loading posts...</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
+
   // Filter the auctionData to get only live auctions
-  const featuredAuctionData = auctionData
-    .filter(function (auction) {
-      return auction.isLive;
-    })
-    .slice(0, 6); // Get only the first 6 live auctions
+  // const featuredAuctionData = auctionData
+  //   .filter(function (auction) {
+  //     return auction.isLive;
+  //   })
+  //   .slice(0, 6); // Get only the first 6 live auctions
 
   return (
     <div>
       {/* Navbar */}
       <Navbar />
+
       {/* Hero Section */}
       <section className="w-full bg-gradient-to-r from-[#2563EB] to-[#7E22CE] text-white py-20">
         <div className="max-w-6xl mx-auto text-center">
@@ -81,7 +110,8 @@ function Landing() {
             Don't miss these popular items ending soon
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-6">
-            {featuredAuctionData.map((auction, index) => (
+            {liveAuctions.map((auction, index) => (
+              // console.log(auction)
               <FeaturedAuctionCard key={index} auctionData={auction} />
             ))}
           </div>

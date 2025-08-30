@@ -1,17 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { categoriesObject } from "../data/data.js";
 
-const handleFilterByCategory = () => {
-  // Implement category filter logic here
-  alert("Category clicked");
-};
+function CategoryFilter({ onCategorySelect }) {
+  const [auctionCounts, setAuctionCounts] = useState({});
 
-function CategoryFilter() {
+  useEffect(() => {
+    // Fetch auctions from JSON server
+    fetch("http://localhost:3001/auctions")
+      .then((res) => res.json())
+      .then((data) => {
+        // Count auctions per category
+        const counts = {};
+        data.forEach((auction) => {
+          counts[auction.category] = (counts[auction.category] || 0) + 1;
+        });
+        setAuctionCounts(counts);
+      });
+  }, []);
+
+  const handleFilterByCategory = (category) => {
+    if (onCategorySelect) onCategorySelect(category);
+  };
+
   return (
     <div>
-      {/* Browse categories section */}
       <section className="py-16 bg-[#ffffff] ">
-        <div className="max-w-6xl  mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-2xl mb-3 text-[#111827] font-Inter font-normal">
             Browse by Category
           </h2>
@@ -23,17 +37,18 @@ function CategoryFilter() {
               <div
                 key={item.id}
                 className="p-5 bg-[#ffffff] rounded shadow flex flex-col gap-y-2 items-center cursor-pointer hover:shadow-lg transition"
-                onClick={handleFilterByCategory}
+                onClick={() => handleFilterByCategory(item.catigory)}
               >
-                <img src={item.icon} alt={`${item.title}-icon`} />
+                <img src={item.icon} alt={`${item.catigory}-icon`} />
                 <h2 className="text-[18px] font-normal mb-2">
                   {item.catigory}
                 </h2>
-                <p className="text-[#4B5563] text-[14px]">{item.description}</p>
-                <p className="bg-[#F5F5F4] rounded-3xl py-1 px-2 text-[#1C1917] text-[13px] font-Inter font-normal   ">
-                  {" "}
-                  <span>0</span> auctions
-                </p>
+                <span className="text-[#4B5563] text-[14px]">
+                  {item.description}
+                </span>
+                <span className="bg-[#F5F5F4] rounded-3xl py-1 px-2 text-[#1C1917] text-[13px] font-Inter font-normal">
+                  {auctionCounts[item.catigory] || 0} auctions
+                </span>
               </div>
             ))}
           </div>
@@ -44,3 +59,4 @@ function CategoryFilter() {
 }
 
 export default CategoryFilter;
+// filepath: c:\Projects\Dawglass-

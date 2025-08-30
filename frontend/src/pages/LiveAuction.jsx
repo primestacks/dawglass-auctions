@@ -1,16 +1,35 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import FeaturedAuctionCard from "../components/FeaturedAuctionCard";
-import { auctionData } from "../data/data.js";
+// import { auctionData } from "../data/data.js";
 import Footer from "../components/Footer.jsx";
 import Button from "../components/Button";
 import { FiUsers } from "react-icons/fi";
 
 function LiveAuction() {
-  // Filter the auctionData to get only live auctions
-  const featuredLiveAuctionData = auctionData.filter(function (auction) {
-    return auction.isLive;
-  });
+  const [auctions, setAuctions] = useState([]); // State to hold auction data
+
+  const [featuredLiveAuctionData, setFeaturedLiveAuctionData] = useState([]);
+
+  // Fetch auction data from the mock API
+  const fetchAuctions = async () => {
+    const res = await fetch("http://localhost:8000/auctions");
+    try {
+      if (!res.ok) throw new Error("Failed to fetch auctions");
+      const data = await res.json();
+      setAuctions(data);
+
+      // Filter the auctionData to get only live auctions
+      const liveAuctions = data.filter((auction) => auction.isLive);
+      setFeaturedLiveAuctionData(liveAuctions);
+    } catch (error) {
+      console.error("Error fetching auctions:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAuctions();
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">

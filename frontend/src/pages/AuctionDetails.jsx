@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { auctionData } from "../data/data.js";
+// import { auctionData } from "../data/data.js";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 
-function AuctionDetailPage() {
-  const { slug } = useParams();
-  const auction = auctionData.slug;
+function AuctionDetails() {
+  const { id } = useParams();
+  const auction = auctionData.id;
+  const [auctions, setAuctions] = useState([]); // State to hold auction data
+
+  // Fetch auction data from the mock API
+
+  useEffect(() => {
+    const fetchAuctions = async () => {
+      const res = await fetch(`http://localhost:8000/auctions/${id}`);
+      try {
+        if (!res.ok) throw new Error("Failed to fetch auctions");
+        const data = await res.json();
+        setAuctions(data);
+      } catch (error) {
+        console.error("Error fetching auctions:", error);
+      }
+    };
+    fetchAuctions();
+  }, []);
 
   if (!auction) {
     return (
@@ -88,5 +105,5 @@ function AuctionDetailPage() {
   );
 }
 
-export default AuctionDetailPage;
+export default AuctionDetails;
 // filepath: c:\Projects\Dawglass-auctions\frontend\src\pages\AuctionDetails.jsx
