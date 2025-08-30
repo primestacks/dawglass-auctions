@@ -10,6 +10,11 @@ import { Link } from "react-router";
 import CategoryFilter from "../../components/CategoryFilter.jsx";
 
 function Landing() {
+  // const API_URI = import.meta.env.VITE_API_URL;
+  const API_URI = "http://localhost:5000";
+
+  console.log("API_URI:", API_URI);
+
   // const [featuredAuctionData, setFeaturedAuctionData] = useState([]);
 
   const [liveAuctions, setLiveAuctions] = useState([]); // State to hold live auction data
@@ -19,7 +24,7 @@ function Landing() {
   // Fetch auction data from the mock API
   useEffect(() => {
     const fetchAuctions = async () => {
-      const res = await fetch("http://localhost:5000/auctions");
+      const res = await fetch(`${API_URI}/auctions`);
       try {
         if (!res.ok) throw new Error("Failed to fetch auctions");
         const data = await res.json();
@@ -35,7 +40,7 @@ function Landing() {
     fetchAuctions();
   }, []);
 
-  if (loading) return <p>Loading posts...</p>;
+  if (loading) return <p>Loading auction data...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   // Filter the auctionData to get only live auctions
