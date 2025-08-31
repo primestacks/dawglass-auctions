@@ -7,29 +7,37 @@ import Button from "../components/Button";
 import { FiUsers } from "react-icons/fi";
 
 function LiveAuction() {
-  const [auctions, setAuctions] = useState([]); // State to hold auction data
+  const API_URI = "http://localhost:5000";
+  const [auctions, setAuctions] = useState([]); // State to hold featured live auction data
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const [featuredLiveAuctionData, setFeaturedLiveAuctionData] = useState([]);
 
-  // Fetch auction data from the mock API
-  const fetchAuctions = async () => {
-    const res = await fetch("http://localhost:8000/auctions");
-    try {
-      if (!res.ok) throw new Error("Failed to fetch auctions");
-      const data = await res.json();
-      setAuctions(data);
-
-      // Filter the auctionData to get only live auctions
-      const liveAuctions = data.filter((auction) => auction.isLive);
-      setFeaturedLiveAuctionData(liveAuctions);
-    } catch (error) {
-      console.error("Error fetching auctions:", error);
-    }
-  };
-
   useEffect(() => {
+    // Fetch auction data from the mock API
+    const fetchAuctions = async () => {
+      const res = await fetch(`${API_URI}/auctions`);
+      try {
+        if (!res.ok) throw new Error("Failed to fetch auctions");
+        const data = await res.json();
+        setAuctions(data);
+
+        // Filter the auctionData to get only live auctions
+        const liveAuctions = data.filter((auction) => auction.isLive);
+        setFeaturedLiveAuctionData(liveAuctions);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchAuctions();
   }, []);
+
+  if (loading) return <p>Loading auction data...</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
     <div className="min-h-screen flex flex-col">

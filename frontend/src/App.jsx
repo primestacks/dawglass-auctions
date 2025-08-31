@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Landing from "./pages/home/Landing";
 import LiveAuction from "./pages/LiveAuction";
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     element: <Categories />,
   },
   {
-    path: "/auction/:id",
+    path: "/auction/:id/:slug",
     element: <AuctionDetails />,
   },
 ]);

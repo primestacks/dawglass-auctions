@@ -13,10 +13,6 @@ function Landing() {
   // const API_URI = import.meta.env.VITE_API_URL;
   const API_URI = "http://localhost:5000";
 
-  console.log("API_URI:", API_URI);
-
-  // const [featuredAuctionData, setFeaturedAuctionData] = useState([]);
-
   const [liveAuctions, setLiveAuctions] = useState([]); // State to hold live auction data
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -70,9 +66,6 @@ function Landing() {
           <Button className="bg-transparent border border-[#ffffff] text-[#ffffff]">
             Browse Auctions
           </Button>
-          {/* <button className="bg-white text-blue-600 px-6 py-2 rounded hover:bg-blue-100 transition">
-            Get Started
-          </button> */}
         </div>
       </section>
 
@@ -115,16 +108,13 @@ function Landing() {
             Don't miss these popular items ending soon
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-6">
-            {liveAuctions.map((auction, index) => (
+            {liveAuctions.map((auction) => (
               // console.log(auction)
-              <FeaturedAuctionCard key={index} auctionData={auction} />
+              <FeaturedAuctionCard key={auction.id} auctionData={auction} />
             ))}
           </div>
 
-          {/* Call to Action Section */}
-          {/* <button className="bg-[#2094F3]  text-white px-6 py-2 rounded hover:bg-blue-700 transition">
-            <Link to="/liveauctions">View all auctions</Link>
-          </button> */}
+          {/* Call to Action Section: View all auctions button */}
           <Link
             to="/liveauctions"
             className="bg-[#2094F3] py-3 px-10  text-white rounded hover:bg-blue-700 transition"
