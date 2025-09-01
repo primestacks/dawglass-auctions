@@ -82,8 +82,7 @@ function LiveAuction() {
           </Button>
         </div>
       </section>
-
-      {/* Footer */}
+      <Footer />
     </div>
   );
 }

@@ -99,7 +99,7 @@ function Landing() {
       <CategoryFilter />
 
       {/* Featured live auctions section */}
-      <section className="py-16 max-w-full mx-auto min-h-screen bg-gray-100 text-center">
+      <section className="py-16 max-w-full min-h-screen bg-[#F9FAFB] text-center">
         <div className="max-w-6xl mx-auto   ">
           <h2 className="text-3xl font-normal mb-3 text-[#111827] text-[1.875rem]">
             Featured Live Auctions
@@ -125,6 +125,29 @@ function Landing() {
       </section>
 
       {/* actitivites statistics */}
+      <section className="w-full bg-[#ffffff] py-16 ">
+        <div className="max-w-6xl mx-auto text-center font-Inter grid grid-cols-2 md:grid-cols-4 gap-5 justify-around">
+          <div className="flex flex-col">
+            <span className="text-[30px] text-[#2563EB]">10,000+ </span>
+            <span className="text-[16px] text-[#4B5563]">Active Users</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[30px] text-[#16A34A]">5,000+ </span>
+            <span className="text-[16px] text-[#4B5563]">Items Sold</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[30px] text-[#9333EA]">$2M+ </span>
+            <span className="text-[16px] text-[#4B5563]">Total sales</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[30px] text-[#EA580C]">99% </span>
+            <span className="text-[16px] text-[#4B5563]">
+              Satisfaction rate
+            </span>
+          </div>
+        </div>
+      </section>
+
       <section className="py-8 bg-[#2563EB] text-center">
         <div className="max-w-6xl mx-auto text-center text-[#ffffff] py-5 font-Inter">
           <h2 className="text-3xl font-normal mb-3">

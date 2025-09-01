@@ -46,7 +46,7 @@ function AuctionDetails() {
       <section className="max-w-full mx-auto py-12 min-h-screen">
         <div className="max-w-6xl mx-auto mb-8 font-Inter flex flex-col md:flex-row space-x-5">
           {/* left flex */}
-          <div className="flex-1 space-y-6">
+          <div className="flex-1 space-y-6 mb-6">
             <div className="bg-white rounded-lg shadow-lg p-8">
               <img
                 src={auction.image}
