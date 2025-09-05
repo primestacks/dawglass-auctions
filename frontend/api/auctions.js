@@ -1,11 +1,13 @@
 import jsonServer from "json-server";
 
-const server = jsonServer.create();
-const router = jsonServer.router("src/data/db.json");
-const middlewares = jsonServer.defaults();
+const handler = (req, res) => {
+  const server = jsonServer.create();
+  const router = jsonServer.router("src/data/db.json");
+  const middlewares = jsonServer.defaults();
 
-server.use(middlewares);
-server.use(router);
+  server.use(middlewares);
+  server.use(router);
+  server(req, res);
+};
 
-// Vercel expects a default export of a handler function
-export default server;
+export default handler;
